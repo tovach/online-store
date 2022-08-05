@@ -1,9 +1,8 @@
-import {FC} from "react";
 import './index.scss'
 import {withProviders} from "app/providers";
 import {Routing} from "pages/Routing";
 
-const App: FC = () => {
+const App = () => {
     return (
         <Routing/>
     )

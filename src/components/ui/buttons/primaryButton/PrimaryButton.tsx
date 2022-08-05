@@ -1,9 +1,9 @@
-import {FC} from "react";
+import {FC, ReactNode} from "react";
 import styles from './PrimaryButton.module.scss'
 
-const PrimaryButton: FC<{title:string}> = ({title}) => {
+const PrimaryButton: FC<{children:ReactNode}> = ({children}) => {
     return (
-        <button className={styles.button} type="button">{title}</button>
+        <button className={styles.button} type="button">{children}</button>
     )
 }
 

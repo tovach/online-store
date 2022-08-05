@@ -38,7 +38,7 @@ const Header:FC = () => {
                     <div className={styles.bottomWrapper}>
                         <Logo/>
                         <Navigation>
-                            <PrimaryButton title={'Our Deals'}/>
+                            <PrimaryButton>Our deals</PrimaryButton>
                         </Navigation>
                         <UserBar/>
                     </div>

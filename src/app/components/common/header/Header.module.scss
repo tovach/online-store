@@ -1,4 +1,13 @@
 .header {
+  position: relative;
+  &::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background: var(--color-6);
+  }
 }
 
 .top {

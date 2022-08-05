@@ -1,5 +1,5 @@
 import {FC, ReactNode} from "react";
-import {Categories} from "types/Categories";
+import {Category} from "types/Category";
 
 import styles from './Navigation.module.scss'
 
@@ -8,7 +8,7 @@ interface NavigationProps {
 }
 
 const Navigation: FC<NavigationProps> = ({children}) => {
-    const navItems: Categories[] = [
+    const navItems: Category[] = [
         {
             "id": 1,
             "name": "Clothes",
