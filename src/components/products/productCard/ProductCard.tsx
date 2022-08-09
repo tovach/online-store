@@ -11,7 +11,8 @@ interface ProductCardProps extends Product {
 const ProductCard: FC<ProductCardProps> = ({title, price, images}) => {
     return (
         <article className={styles.card}>
-        <img className={styles.image} src={images[0]} alt={title}/>
+            <img className={styles.image}
+                 src={images.length && images[0].length ? images[0] : 'https://placehold.jp/640x480.png'} alt={title}/>
             <div className={styles.text}>
                 <h3 className={styles.title}>
                     {title}

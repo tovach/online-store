@@ -7,8 +7,11 @@ export const productsApi = createApi({
     endpoints: (build) => ({
         getAllProducts: build.query<Product[], void>({
             query: () => 'products/'
+        }),
+        getProductsByPage: build.query<Product[], { offset: number, limit: number }>({
+            query: ({offset = 0, limit = 12}) => `/products/?offset=${offset}&limit=${limit}`
         })
     })
 })
 
-export const {useGetAllProductsQuery} = productsApi
+export const {useGetAllProductsQuery, useGetProductsByPageQuery} = productsApi
