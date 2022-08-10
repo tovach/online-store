@@ -1,23 +1,31 @@
-import styles from './Home.module.scss'
-import {ProductCard} from "components/products";
+import {ProductCard, ProductCardPreloader} from "components/products";
 import {useGetProductsByPageQuery} from "store/api/products.api";
-import {useState} from "react";
+import {FC, useState} from "react";
 import {SecondaryButton} from "components/ui/buttons/secondaryButton/SecondaryButton";
 
-const Home = () => {
-    const [pagination, setPagination] = useState({limit: 12, offset: 0});
-    const {data: products} = useGetProductsByPageQuery(pagination);
+import styles from './Home.module.scss'
 
+const Skeletons: FC = () => {
+    return (
+        <div className={styles.list}>
+            {Array(8).fill(null).map((_, index) => <li key={index}><ProductCardPreloader/></li>)}
+        </div>
+    )
+}
+
+const Home: FC = () => {
+    const [pagination, setPagination] = useState({limit: 8, offset: 0});
+    const {data: products, isFetching} = useGetProductsByPageQuery(pagination);
 
     const nextPage = () => {
         setPagination(prevState => {
-            return {...prevState, offset: prevState.offset + 12}
+            return {...prevState, offset: prevState.offset + 8}
         })
     }
     const prevPage = () => {
         if (pagination.offset !== 0) {
             setPagination(prevState => {
-                return {...prevState, offset: prevState.offset - 12}
+                return {...prevState, offset: prevState.offset - 8}
             })
         } else return
     }
@@ -28,16 +36,21 @@ const Home = () => {
             <div className='container'>
                 <div className={styles.wrapper}>
                     <h3 className={styles.heading}>All products</h3>
-                    <ul className={styles.list}>
-                        {products?.map((item) => {
-                            return <li className={styles.item} key={item.id}>
-                                <ProductCard {...item} />
-                            </li>
-                        })}
-                    </ul>
+                    {isFetching ?
+                        <Skeletons/> :
+                        <ul className={styles.list}>
+                            {products?.map((item) => {
+                                return <li className={styles.item} key={item.id}>
+                                    <ProductCard {...item} />
+                                </li>
+                            })}
+                        </ul>
+                    }
+
                     <div className={styles.pagination}>
                         <SecondaryButton onClick={prevPage} disabled={!pagination.offset}>Prev</SecondaryButton>
-                        <SecondaryButton onClick={nextPage} disabled={!products?.length}>Next</SecondaryButton>
+                        <SecondaryButton onClick={nextPage}
+                                         disabled={!products?.length || products?.length < 8}>Next</SecondaryButton>
                     </div>
                 </div>
             </div>

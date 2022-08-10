@@ -1,19 +1,29 @@
-.home{}
-.wrapper{
-  padding-top: 20px;
+.home {
+  padding: 20px;
+}
+
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.heading{}
-.list{
+
+.heading {
+}
+
+.list {
+  min-height: 800px;
   flex-wrap: wrap;
   justify-content: space-between;
   display: flex;
   gap: 20px;
 }
-.item{}
-.pagination{
+
+.item {
+}
+
+
+.pagination {
   display: flex;
   gap: 20px;
   align-self: center;

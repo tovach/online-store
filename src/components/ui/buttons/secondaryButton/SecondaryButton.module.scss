@@ -8,4 +8,10 @@
   border: none;
   border-radius: 50px;
   cursor: pointer;
+
+  &:disabled {
+    background: var(--color-1);
+    color: var(--color-11);
+    pointer-events: none;
+  }
 }
