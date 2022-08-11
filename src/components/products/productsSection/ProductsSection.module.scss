@@ -1,0 +1,23 @@
+.productsSection {
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 33px;
+  color: var(--color-7);
+}
+
+.skeletonsList {
+  min-height: 800px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+  gap: 20px;
+}

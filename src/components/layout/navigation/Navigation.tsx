@@ -2,6 +2,7 @@ import {FC, ReactNode} from "react";
 import {Category} from "types/Category";
 
 import styles from './Navigation.module.scss'
+import {Link} from "react-router-dom";
 
 interface NavigationProps {
     children?: ReactNode
@@ -40,7 +41,7 @@ const Navigation: FC<NavigationProps> = ({children}) => {
             <ul className={styles.list}>
                 {navItems.map(({name, id}) =>
                     <li className={styles.item} key={id}>
-                        <a className={styles.link} href={`/${id}`}>{name}</a>
+                        <Link className={styles.link} to={`/categories/?id=${id}&name=${name}`}>{name}</Link>
                     </li>
                 )}
                 <li>{children}</li>

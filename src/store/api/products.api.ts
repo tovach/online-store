@@ -5,13 +5,23 @@ export const productsApi = createApi({
     reducerPath: 'productsApi',
     baseQuery: fetchBaseQuery({baseUrl: 'https://api.escuelajs.co/api/v1/'}),
     endpoints: (build) => ({
-        getAllProducts: build.query<Product[], void>({
-            query: () => 'products/'
+        getProducts: build.query<Product[], { categoryId?: number, offset: number, limit?: number }>({
+            query: ({categoryId, offset = 0, limit = 8}) => {
+                if (categoryId) {
+                    return `/categories/${categoryId}/products/?offset=${offset}&limit=${limit}`
+                } else {
+                    return `/products/?offset=${offset}&limit=${limit}`
+                }
+            }
         }),
-        getProductsByPage: build.query<Product[], { offset: number, limit: number }>({
-            query: ({offset = 0, limit = 12}) => `/products/?offset=${offset}&limit=${limit}`
+        getProductsByCategory: build.query<Product[], { categoryId?: number, offset: number, limit?: number }>({
+            query: ({
+                        categoryId = 1,
+                        offset = 0,
+                        limit = 8
+                    }) => `/categories/${categoryId}/products/?offset=${offset}&limit=${limit}`
         })
     })
 })
 
-export const {useGetAllProductsQuery, useGetProductsByPageQuery} = productsApi
+export const {useGetProductsQuery, useGetProductsByCategoryQuery} = productsApi

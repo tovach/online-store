@@ -1,14 +1,13 @@
 import {FC} from "react";
 
+import styles from './Categories.module.scss'
 import {ProductsSection} from "components/products";
 
-import styles from './Home.module.scss'
-
-const Home: FC = () => {
+const Categories: FC = () => {
 
 
     return (
-        <div className={styles.home}>
+        <div className={styles.categories}>
             <div className='container'>
                 <ProductsSection/>
             </div>
@@ -16,4 +15,4 @@ const Home: FC = () => {
     )
 }
 
-export {Home}
+export {Categories}
